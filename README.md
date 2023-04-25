@@ -12,6 +12,7 @@ Python auto bumper for disboard. The Tool is currently in [BETA]. A lot is buggy
 
 
 # Screenshots
-![Screenshot 2023-04-23 180837](https://user-images.githubusercontent.com/96635023/233851135-5b50487a-9254-46ed-b511-e28c81d6a623.png)
-![asxaasx](https://user-images.githubusercontent.com/96635023/233851134-37f32862-5093-44db-8fb5-9c4ade459f1c.png)
 
+![xasdax](https://user-images.githubusercontent.com/96635023/234318783-5f1b31c4-ed5b-457a-ae83-b538f937b97d.png)
+
+![222](https://user-images.githubusercontent.com/96635023/234318770-2a8d86ac-d60c-4ea6-ae41-71ddde8d1be7.png)
