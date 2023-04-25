@@ -27,12 +27,18 @@ class ServerIDWindow(customtkinter.CTk):
 
         self.frame_1 = customtkinter.CTkFrame(self.root, fg_color="#323336")
         self.frame_1.pack(pady=20, padx=30, fill="both", expand=True)
-        id_label = customtkinter.CTkLabel(self.frame_1, text="RPZ - AutoBumper", fg_color="transparent",font=("Arial", 16, "bold"))
+
+        id_label = customtkinter.CTkLabel(self.frame_1, text="RPZ - AutoBumper", fg_color="transparent",
+                                          font=("Arial", 16, "bold"))
         id_label.pack(side="top", padx=10, pady=10)
+
         self.id_entry = customtkinter.CTkEntry(self.frame_1, placeholder_text="Server ID")
         self.id_entry.pack(side="top", padx=10, pady=5)
+
         start_button = customtkinter.CTkButton(self.frame_1, text="Continue", command=self.set_server_id, fg_color="#5a5f69", hover_color="#42474f")
         start_button.pack(side="top", pady=10)
+
+        # Bind the close button to a function that exits the program
         self.root.protocol("WM_DELETE_WINDOW", self.exit_program)
 
         self.root.mainloop()
@@ -76,7 +82,7 @@ class BumpTimerApp(customtkinter.CTk):
     def create_gui(self):
         self.root = tk.Tk()
         self.root.title("RPZ-Bumper")
-        self.root.geometry("300x400")
+        self.root.geometry("300x250")
         self.root.config(bg="#36393f")
         self.root.iconbitmap("1.ico")
         self.root.resizable(False, False)
@@ -113,6 +119,7 @@ class BumpTimerApp(customtkinter.CTk):
 
 
     def update_interval(self, value):
+        # Convert the value from hours to seconds
         self.interval = int(value) * 3600
 
         # Update the timer label with the new interval value
@@ -128,11 +135,12 @@ class BumpTimerApp(customtkinter.CTk):
         self.timer_label.config(text=timer_text)
 
     def scale_callback(self, val):
-        self.interval = int(val) * 3600 
+        self.interval = int(val) * 3600  # convert hours to seconds
 
 
 
     def start_bumping(self):
+        # Start the timer
         self.url = self.base_url + self.server_id
         self.next_bump = time.time() + self.interval
         self.bump_server()
@@ -142,6 +150,8 @@ class BumpTimerApp(customtkinter.CTk):
         self.update_timer_label()
 
         self.next_bump += self.interval
+
+        # Run notification in a separate thread if checkbox is checked
         if self.win_notifications_var.get():
             notification_thread = Thread(target=self.show_notification)
             notification_thread.start()
