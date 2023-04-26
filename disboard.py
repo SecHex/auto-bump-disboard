@@ -14,7 +14,10 @@ from threading import Thread
 
 class ServerIDWindow(customtkinter.CTk):
     def __init__(self):
-        self.server_id = ""
+        self.server_id = self.load_server_id()
+        if self.server_id:
+            return
+
         self.create_gui()
 
     def create_gui(self):
@@ -24,7 +27,6 @@ class ServerIDWindow(customtkinter.CTk):
         self.root.config(bg="#36393f")
         self.root.iconbitmap("1.ico")
         self.root.resizable(False, False)
-
         self.frame_1 = customtkinter.CTkFrame(self.root, fg_color="#323336")
         self.frame_1.pack(pady=20, padx=30, fill="both", expand=True)
 
@@ -38,12 +40,9 @@ class ServerIDWindow(customtkinter.CTk):
         start_button = customtkinter.CTkButton(self.frame_1, text="Continue", command=self.set_server_id, fg_color="#5a5f69", hover_color="#42474f")
         start_button.pack(side="top", pady=10)
 
-        # Bind the close button to a function that exits the program
+
         self.root.protocol("WM_DELETE_WINDOW", self.exit_program)
-
         self.root.mainloop()
-
-
 
     def set_server_id(self):
         server_id = self.id_entry.get()
@@ -53,7 +52,17 @@ class ServerIDWindow(customtkinter.CTk):
             error_label.pack(side="top", padx=10, pady=5)
         else:
             self.server_id = server_id
+            self.save_server_id(server_id)
             self.root.destroy()
+
+    def save_server_id(self, server_id):
+        with open("server_id.txt", "w") as f:
+            f.write(server_id)
+
+    def load_server_id(self):
+        if os.path.isfile("server_id.txt"):
+            with open("server_id.txt", "r") as f:
+                return f.read().strip()
 
     def exit_program(self):
         self.root.withdraw()
@@ -94,9 +103,6 @@ class BumpTimerApp(customtkinter.CTk):
                                    fg="#FFFFFF", font=("Arial", 9, "bold"))
         server_id_label.pack(side="top", pady=1)
 
-
-
-
         self.timer_label = tk.Label(self.frame_2, text="Next auto bump in: -", bg="#323336", fg="#FFFFFF", font=("Arial", 10))
         self.timer_label.pack(side="top", pady=10)
 
@@ -116,6 +122,8 @@ class BumpTimerApp(customtkinter.CTk):
 
         self.root.protocol("WM_DELETE_WINDOW", self.exit_program)
         self.root.mainloop()
+
+
 
 
     def update_interval(self, value):
@@ -186,8 +194,6 @@ class BumpTimerApp(customtkinter.CTk):
 
     def exit_program(self):
         self.root.withdraw()
-
-
 
 
 
