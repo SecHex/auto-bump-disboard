@@ -1,0 +1,4 @@
+webbrowser
+tkinter
+customtkinter
+win10toast
