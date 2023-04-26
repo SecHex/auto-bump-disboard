@@ -1,11 +1,11 @@
 import time
 import webbrowser
 import tkinter as tk
-from tkinter import messagebox
-
 import customtkinter
 import sys
 import os
+
+from tkinter import messagebox
 from win10toast import ToastNotifier
 from threading import Thread
 
@@ -127,28 +127,23 @@ class BumpTimerApp(customtkinter.CTk):
 
 
     def update_interval(self, value):
-        # Convert the value from hours to seconds
         self.interval = int(value) * 3600
-
-        # Update the timer label with the new interval value
+        
         remaining_time = self.next_bump - time.time()
         if remaining_time < 0:
             remaining_time = 0
         remaining_time_str = time.strftime('%H:%M:%S', time.gmtime(remaining_time))
         interval_text = f"Auto bump interval: {value}h"
         self.interval_label.config(text=interval_text)
-
-        # Update the timer label with the new remaining time
         timer_text = f"Next bump in: {remaining_time_str}"
         self.timer_label.config(text=timer_text)
 
     def scale_callback(self, val):
-        self.interval = int(val) * 3600  # convert hours to seconds
+        self.interval = int(val) * 3600
 
 
 
     def start_bumping(self):
-        # Start the timer
         self.url = self.base_url + self.server_id
         self.next_bump = time.time() + self.interval
         self.bump_server()
@@ -159,7 +154,6 @@ class BumpTimerApp(customtkinter.CTk):
 
         self.next_bump += self.interval
 
-        # Run notification in a separate thread if checkbox is checked
         if self.win_notifications_var.get():
             notification_thread = Thread(target=self.show_notification)
             notification_thread.start()
