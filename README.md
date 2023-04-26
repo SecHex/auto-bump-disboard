@@ -2,9 +2,10 @@
 Python auto bumper for disboard. The Tool is currently in [BETA]. A lot is buggy rn but i fix this in the next Weeks.
 
 
+
+
 # Soon... :
 - More Server bumps
-- Server ID saving
 - Interval settings
 - Better Design
 - Autostart Feature
