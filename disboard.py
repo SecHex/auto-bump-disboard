@@ -81,7 +81,7 @@ class BumpTimerApp(customtkinter.CTk):
         self.base_url = "https://disboard.org/de/server/bump/"
         self.server_id = server_id
         self.url = ""
-        self.interval = 1 * 60 * 60
+        self.interval = 60 * 60
         self.next_bump = 0
         self.autostart_enabled = False
         self.toaster = ToastNotifier()
