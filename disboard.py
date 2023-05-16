@@ -22,7 +22,7 @@ class ServerIDWindow(customtkinter.CTk):
 
     def create_gui(self):
         self.root = tk.Tk()
-        self.root.title("RPZ-Bumper")
+        self.root.title("SecHex-Bumper")
         self.root.geometry("300x200")
         self.root.config(bg="#36393f")
         self.root.iconbitmap("1.ico")
